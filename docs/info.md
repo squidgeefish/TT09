@@ -9,12 +9,12 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Explain how your project works
+4-bit ripple carry adder. Adds `IN[3:0]` to `IN[7:4]` and outputs to `OUT[4:0]` with the carry bit as the high bit.
 
 ## How to test
 
-Explain how to use your project
+Set the input DIP switches to hold each nybble. Output will show up on the OUT bus; if you're hooked up to the 7-segment display you might be hopelessly confused.
 
 ## External hardware
 
-List external hardware used in your project (e.g. PMOD, LED display, etc), if any
+Might want to connect a normal row of LEDs to the output bus rather than the 7-segment display.
