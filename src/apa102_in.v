@@ -36,14 +36,14 @@ module apa102_in (
       if ((sck == 1) && !last_sck) begin 
         case(state)
           START: begin
-//            if (sda) begin // we need 32 0 bits for a valid start frame
-//              bit_count <= 0;
-//            end else begin
+            if (sda) begin // we need 32 0 bits for a valid start frame
+              bit_count <= 0;
+            end else begin
               if (bit_count == 31) begin
                 state <= DATA;
               end
               bit_count <= bit_count + 1;
-//            end
+            end
           end // START
       
           DATA: begin
