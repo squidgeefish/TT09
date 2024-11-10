@@ -5,7 +5,8 @@ module uart_printer (
 );
   localparam CLK_SPEED = 25000000;
   localparam UART_PERIOD = 0.000008681;
-  localparam UART_COUNTS = $rtoi(CLK_SPEED*UART_PERIOD);
+  localparam UART_COUNTS32 = $rtoi(CLK_SPEED*UART_PERIOD);
+  localparam UART_COUNTS = UART_COUNTS32[7:0];
   localparam MSG_LEN = 180;
 
   // Generated in Python - but I had to flip it around backwards, gah:
