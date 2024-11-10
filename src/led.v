@@ -29,7 +29,7 @@ module led #(
 	parameter REFRESH_DURATION = 0.00005	//duration for reset
 )(
 	input wire [LED_CNT*CHANNELS*BITPERCHANNEL-1:0]data, //data
-	output reg led_o,						//output for leds
+	output wire led_o,						//output for leds
 	input wire clk,							//internal clock
 	input wire reset						//chip reset
 );

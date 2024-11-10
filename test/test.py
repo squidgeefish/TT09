@@ -56,10 +56,11 @@ async def test_project(dut):
     # The following assersion is just an example of how to check the output values.
     # Change it to match the actual expected output of your module:
     
-    #assert dut.user_project.spi_in.data_out.value == 0xdeadbeefd0d0cafefeedfacedecea5ed0123456789abcdefdecafbad
-    assert dut.user_project.spi_in.data_out.value == 0xadbeefd0cafeedfacecea5ed234567abcdefcafbad
+    # These tests dig too far into the internals and so they don't work the GL tests.
+    # Uncomment for local testing with `make -B`...
+    # assert dut.user_project.spi_in.data_out.value == 0xadbeefd0cafeedfacecea5ed234567abcdefcafbad
 
-    assert dut.user_project.ws2812_out.data.value == 0xbeefadcafed0faceeda5edce456723cdefabfbadca
+    # assert dut.user_project.ws2812_out.data.value == 0xbeefadcafed0faceeda5edce456723cdefabfbadca
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.

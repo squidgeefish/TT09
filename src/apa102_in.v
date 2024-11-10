@@ -1,5 +1,5 @@
 // A very basic SPI receiver; waits for a valid 32-bit '0' start packet for APA102s
-// Then shifts the next 7 LEDs' 32-bit payloads into data_out
+// Then shifts the next 7 LEDs' 32-bit payloads into data_out (ignoring the leading 8 bits of "intensity")
 // Stops shifting just prior to the 32-bit stop packet and then cycles back around for the next one
 
 module apa102_in (

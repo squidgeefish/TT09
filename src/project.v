@@ -35,8 +35,8 @@ module tt_um_apa102_ws2812_squidgeefish (
     .sda(ui_in[1]),
     .data_out({pixel_0, pixel_1, pixel_2, pixel_3, pixel_4, pixel_5, pixel_6})
   );
-  // data_out is exactly the bitstream that SPI streamed in, first temporal bit as the MSB
-  // So the MSB here is the first bit of the start frame for LED 0
+  // data_out is a pruned version of the SPI stream that loses the first 8 bits (intensity value)
+  // of each 32-bit pixel value so we don't have to discard them via routing - this saves like 8%
 
   // APA102s are BGR; WS2812s expect GRB. So we have to shuffle the subpixel order.
   led #( .LED_CNT(7) ) ws2812_out (
