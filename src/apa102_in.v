@@ -48,13 +48,8 @@ module apa102_in (
       
           DATA: begin
             if ( ((bit_count - 32)  % 32) >= 8 ) begin
+              data_out[index] <= sda;
               index <= index - 1;
-              // data_out[index] <= sda;
-              if ( (index % 24) < 16) begin
-                  data_out[index + 8] <= sda;
-              end else begin
-                  data_out[index - 16] <= sda;
-              end
             end
             bit_count <= bit_count + 1;
             if (bit_count == 256) begin // 32*(start + 7 LEDs)
