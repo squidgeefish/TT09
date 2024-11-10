@@ -43,15 +43,15 @@ module tt_um_apa102_ws2812_squidgeefish (
     .clk(clk),
     .reset(not_reset),
     .led_o(uo_out[0]),
-    .data({
-      pixel_0[15:8], pixel_0[7:0], pixel_0[23:16],
-      pixel_1[15:8], pixel_1[7:0], pixel_1[23:16],
-      pixel_2[15:8], pixel_2[7:0], pixel_2[23:16],
-      pixel_3[15:8], pixel_3[7:0], pixel_3[23:16],
-      pixel_4[15:8], pixel_4[7:0], pixel_4[23:16],
-      pixel_5[15:8], pixel_5[7:0], pixel_5[23:16],
-      pixel_6[15:8], pixel_6[7:0], pixel_6[23:16]
-      })
+    .data({ pixel_0, pixel_1, pixel_2, pixel_3, pixel_4, pixel_5, pixel_6})
+//      pixel_0[15:8], pixel_0[7:0], pixel_0[23:16],
+//      pixel_1[15:8], pixel_1[7:0], pixel_1[23:16],
+//      pixel_2[15:8], pixel_2[7:0], pixel_2[23:16],
+//      pixel_3[15:8], pixel_3[7:0], pixel_3[23:16],
+//      pixel_4[15:8], pixel_4[7:0], pixel_4[23:16],
+//      pixel_5[15:8], pixel_5[7:0], pixel_5[23:16],
+//      pixel_6[15:8], pixel_6[7:0], pixel_6[23:16]
+//      })
   );
 
   // All output pins must be assigned. If not used, assign to 0.
@@ -60,7 +60,6 @@ module tt_um_apa102_ws2812_squidgeefish (
   assign uo_out[7:1]  = 7'b0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, 1'b0}; //pixel_0[31:24], pixel_1[31:24], pixel_2[31:24], pixel_3[31:24],
-          //         pixel_4[31:24], pixel_5[31:24], pixel_6[31:24], 1'b0};
+  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, 1'b0};
 
 endmodule
