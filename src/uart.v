@@ -8,10 +8,10 @@ module uart_printer (
   localparam UART_COUNTS = $rtoi(CLK_SPEED*UART_PERIOD);
   localparam MSG_LEN = 180;
 
-  // Generated in Python:
-  // for c in "Arglius Barglius\r\n":
-  //     print("1'b0, {}, 1'b1, ".format(bin(ord(c))), end='')
-  reg [MSG_LEN-1 : 0] msg = {1'b0, 8'b1000001, 1'b1, 1'b0, 8'b1110010, 1'b1, 1'b0, 8'b1100111, 1'b1, 1'b0, 8'b1101100, 1'b1, 1'b0, 8'b1101001, 1'b1, 1'b0, 8'b1110101, 1'b1, 1'b0, 8'b1110011, 1'b1, 1'b0, 8'b100000, 1'b1, 1'b0, 8'b1000010, 1'b1, 1'b0, 8'b1100001, 1'b1, 1'b0, 8'b1110010, 1'b1, 1'b0, 8'b1100111, 1'b1, 1'b0, 8'b1101100, 1'b1, 1'b0, 8'b1101001, 1'b1, 1'b0, 8'b1110101, 1'b1, 1'b0, 8'b1110011, 1'b1, 1'b0, 8'b1101, 1'b1, 1'b0, 8'b1010, 1'b1};
+  // Generated in Python - but I had to flip it around backwards, gah:
+  // for c in "Arglius Barglius\r\n"[::-1]:
+  //     print("1'b1, {}, 1'b0, ".format(bin(ord(c))).replace("0b", "8'b"), end='')
+  reg [MSG_LEN-1 : 0] msg = {1'b1, 8'b1010, 1'b0, 1'b1, 8'b1101, 1'b0, 1'b1, 8'b1110011, 1'b0, 1'b1, 8'b1110101, 1'b0, 1'b1, 8'b1101001, 1'b0, 1'b1, 8'b1101100, 1'b0, 1'b1, 8'b1100111, 1'b0, 1'b1, 8'b1110010, 1'b0, 1'b1, 8'b1100001, 1'b0, 1'b1, 8'b1000010, 1'b0, 1'b1, 8'b100000, 1'b0, 1'b1, 8'b1110011, 1'b0, 1'b1, 8'b1110101, 1'b0, 1'b1, 8'b1101001, 1'b0, 1'b1, 8'b1101100, 1'b0, 1'b1, 8'b1100111, 1'b0, 1'b1, 8'b1110010, 1'b0, 1'b1, 8'b1000001, 1'b0};
 
   reg [7:0] count;
   reg [7:0] index;
