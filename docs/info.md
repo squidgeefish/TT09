@@ -13,7 +13,7 @@ This is a converter from the SPI-style APA102 LED protocol to the single-line WS
 
 It's hard-coded to seven LEDs because I needed to set a limit, and this is clearly the simplest possible way to replace the Arduino Micro performing the same task on my [5n4ck3y-7r clone](https://squidgeefish.com/projects/cloning-5n4ck3y-7r/).
 
-It clocks the SPI data on input bit 0 (clock) and bit 1 (data) and waits until it sees a string of 32 low bits to signal a valid start condition. At this point, it starts saving data into an internal shift register, handing that register's contents over to the WS2812 output data feed once all seven LEDs' values have been received. It continues clocking along until recognizing a stop condition (unconditionally 32 bits after the last LED value), at which point it goes back to waiting for a valid start condition.  
+It clocks the SPI data on input bit 0 (clock) and bit 1 (data) and waits until it sees a string of 32 low bits to signal a valid start condition. At this point, it starts saving data into an internal shift register, handing that register's contents over to the WS2812 output data feed once all seven LEDs' values have been received. It continues clocking along until recognizing a stop condition (unconditionally 32 bits after the last LED value), at which point it goes back to waiting for a valid start condition.
 In order to address area concerns, I wound up cutting this down a bit - the internal mirror register was removed entirely, and the SPI reader now also handles discarding the first 8 bits of each 32-bit pixel value. Further tweaks that traded wiring complexity for combinatorics did not make it any better, unfortunately.
 
 I wrote the SPI-parsing and bit-shuffling code from scratch, but the WS2812 output module is lifted from [this TT05 submission](https://github.com/Gatsch/jku-tt06-ledcontroller/blob/main/src/led.v). I did modify it to read the data stream MSB-first rather than LSB-first since that made my life a lot easier in bit-twiddler land.
@@ -31,7 +31,7 @@ If you're hand-crafting your packets, a few notes:
 - APA102s reserve the first byte for intensity: `0b11100000 | <5-bit intensity>`. We're ignoring this completely.
 - APA102 color order for the remaining three bytes is Blue, Green, Red. 
 
-There is also a random feature added in to fill space - there should be a UART output of "Arglius Barglius\r\n" on `uo_out[1]` at approximately 115200 baud; this can be read out with a serial bridge or sufficiently advanced logic analyzer.
+There is also a random feature added in to fill space - there should be a continuous UART output of "Arglius Barglius" on `uo_out[1]` at approximately 115200 baud; this can be read out with a serial bridge or sufficiently advanced logic analyzer.
 
 ## External hardware
 
