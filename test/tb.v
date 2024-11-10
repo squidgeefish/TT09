@@ -30,6 +30,7 @@ module tb ();
   wire apa102_sck = ui_in[0];
   wire apa102_sda = ui_in[1];
   wire ws2812_out = uo_out[0];
+  wire argl_out = uo_out[1]; 
 
   // Replace tt_um_example with your module name:
   tt_um_apa102_ws2812_squidgeefish user_project (

@@ -54,10 +54,16 @@ module tt_um_apa102_ws2812_squidgeefish (
       })
   );
 
+  uart_printer uart_output (
+    .clk(clk),
+    .rst_n(rst_n),
+    .uart_out(uo_out[1])
+  );
+
   // All output pins must be assigned. If not used, assign to 0.
   assign uio_out = 8'b0;
   assign uio_oe  = 0;
-  assign uo_out[7:1]  = 7'b0;
+  assign uo_out[7:2]  = 6'b0;
 
   // List all unused inputs to prevent warnings
   wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, 1'b0}; 

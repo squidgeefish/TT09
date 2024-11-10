@@ -31,6 +31,8 @@ If you're hand-crafting your packets, a few notes:
 - APA102s reserve the first byte for intensity: `0b11100000 | <5-bit intensity>`. We're ignoring this completely.
 - APA102 color order for the remaining three bytes is Blue, Green, Red. 
 
+There is also a random feature added in to fill space - there should be a UART output of "Arglius Barglius\r\n" on `uo_out[1]` at approximately 115200 baud; this can be read out with a serial bridge or sufficiently advanced logic analyzer.
+
 ## External hardware
 
 Some sort of SPI driver is necessary, as is a string of at least seven WS2812 LEDs (or I suppose a logic analyzer can verify it if you're allergic to blinkies). 

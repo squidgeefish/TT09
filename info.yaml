@@ -16,6 +16,7 @@ project:
     - "project.v"
     - "apa102_in.v"
     - "led.v"
+    - "uart.v"
 
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
@@ -32,7 +33,7 @@ pinout:
 
   # Outputs
   uo[0]: "WS2812_OUT"
-  uo[1]: ""
+  uo[1]: "UART_OUT"
   uo[2]: ""
   uo[3]: ""
   uo[4]: ""
