@@ -20,13 +20,13 @@ module tt_um_apa102_ws2812_squidgeefish (
   assign not_reset = ~rst_n;
 
   // Easier to shuffle than if I'd made a single giant wire
-  wire [31:0] pixel_0;
-  wire [31:0] pixel_1;
-  wire [31:0] pixel_2;
-  wire [31:0] pixel_3;
-  wire [31:0] pixel_4;
-  wire [31:0] pixel_5;
-  wire [31:0] pixel_6;
+  wire [23:0] pixel_0;
+  wire [23:0] pixel_1;
+  wire [23:0] pixel_2;
+  wire [23:0] pixel_3;
+  wire [23:0] pixel_4;
+  wire [23:0] pixel_5;
+  wire [23:0] pixel_6;
 
   apa102_in spi_in(
     .clk(clk),
@@ -60,7 +60,7 @@ module tt_um_apa102_ws2812_squidgeefish (
   assign uo_out[7:1]  = 7'b0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, pixel_0[31:24], pixel_1[31:24], pixel_2[31:24], pixel_3[31:24],
-                   pixel_4[31:24], pixel_5[31:24], pixel_6[31:24], 1'b0};
+  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, 1'b0}; //pixel_0[31:24], pixel_1[31:24], pixel_2[31:24], pixel_3[31:24],
+          //         pixel_4[31:24], pixel_5[31:24], pixel_6[31:24], 1'b0};
 
 endmodule
