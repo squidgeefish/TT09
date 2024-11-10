@@ -16,7 +16,7 @@ module apa102_in (
   
   reg [1:0] state;
   
-  reg [8:0] index;
+  reg [7:0] index;
   
   reg [8:0] bit_count;
 
