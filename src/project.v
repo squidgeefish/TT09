@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_apa102_ws2812_squidgeefish (
+module tt_um_wokwi_413387065339458561 (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path

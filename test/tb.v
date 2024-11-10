@@ -33,7 +33,7 @@ module tb ();
   wire argl_out = uo_out[1]; 
 
   // Replace tt_um_example with your module name:
-  tt_um_apa102_ws2812_squidgeefish user_project (
+  tt_um_wokwi_413387065339458561 user_project (
 
       // Include power ports for the Gate Level test:
 `ifdef GL_TEST
