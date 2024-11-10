@@ -29,6 +29,7 @@ module tt_um_apa102_ws2812_squidgeefish (
   wire [31:0] pixel_6;
 
   apa102_in spi_in(
+    .clk(clk),
     .rst_n(rst_n),
     .sck(ui_in[0]),
     .sda(ui_in[1]),
@@ -38,7 +39,7 @@ module tt_um_apa102_ws2812_squidgeefish (
   // So the MSB here is the first bit of the start frame for LED 0
 
   // APA102s are BGR; WS2812s expect GRB. So we have to shuffle the subpixel order.
-  led #( .LED_CNT(7) ) led_out (
+  led #( .LED_CNT(7) ) ws2812_out (
     .clk(clk),
     .reset(not_reset),
     .led_o(uo_out[0]),
@@ -59,6 +60,7 @@ module tt_um_apa102_ws2812_squidgeefish (
   assign uo_out[7:1]  = 7'b0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, 1'b0};
+  wire _unused = &{ui_in[7:2], ena, uio_in[7:0], rst_n, pixel_0[31:24], pixel_1[31:24], pixel_2[31:24], pixel_3[31:24],
+                   pixel_4[31:24], pixel_5[31:24], pixel_6[31:24], 1'b0};
 
 endmodule

@@ -58,7 +58,7 @@ async def test_project(dut):
     
     assert dut.user_project.spi_in.data_out.value == 0xdeadbeefd0d0cafefeedfacedecea5ed0123456789abcdefdecafbad
 
-    assert dut.user_project.led_out.data.value == 0xbeefadcafed0faceeda5edce456723cdefabfbadca
+    assert dut.user_project.ws2812_out.data.value == 0xbeefadcafed0faceeda5edce456723cdefabfbadca
 
     # Keep testing the module by changing the input values, waiting for
     # one or more clock cycles, and asserting the expected output values.
