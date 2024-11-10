@@ -16,7 +16,7 @@ module apa102_in (
   
   reg [1:0] state;
   
-  reg [223:0] shift_data;
+  reg [8:0] index;
   
   reg [8:0] bit_count;
 
@@ -25,10 +25,10 @@ module apa102_in (
   always @(posedge clk) begin
     if (!rst_n) begin
       state <= START;
-      shift_data <= 0;
       data_out <= 0;
       bit_count <= 0;
       last_sck <= 1;
+      index <= 223;
     end else begin
       last_sck <= sck;
 
@@ -47,18 +47,18 @@ module apa102_in (
           end // START
       
           DATA: begin
-            shift_data <= (shift_data << 1) | {223'b0, sda};
+            data_out[index] <= sda;
+            index <= index - 1;
             bit_count <= bit_count + 1;
             if (bit_count == 256) begin // 32*(start + 7 LEDs)
               state <= STOP;
-              data_out <= shift_data;
             end
           end // DATA
        
           STOP: begin
             if (bit_count == 288) begin // 32*(start + 7 LEDs + stop)
               state <= START;
-              shift_data <= 0; // reset for good measure
+              index <= 223;
               bit_count <= 0;
             end else begin
               bit_count <= bit_count + 1;
@@ -67,9 +67,9 @@ module apa102_in (
 
           default: begin
             state <= START;
-            shift_data <= 0;
             data_out <= 0;
             bit_count <= 0;
+            index <= 223;
           end
         endcase
       end
