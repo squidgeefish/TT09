@@ -20,13 +20,13 @@ module tt_um_wokwi_413387065339458561 (
   assign not_reset = ~rst_n;
 
   // Easier to shuffle than if I'd made a single giant wire
-  wire [23:0] pixel_0;
-  wire [23:0] pixel_1;
-  wire [23:0] pixel_2;
-  wire [23:0] pixel_3;
-  wire [23:0] pixel_4;
-  wire [23:0] pixel_5;
-  wire [23:0] pixel_6;
+  wire [8:0] pixel_0;
+  wire [8:0] pixel_1;
+  wire [8:0] pixel_2;
+  wire [8:0] pixel_3;
+  wire [8:0] pixel_4;
+  wire [8:0] pixel_5;
+  wire [8:0] pixel_6;
 
   apa102_in spi_in(
     .clk(clk),
@@ -44,13 +44,13 @@ module tt_um_wokwi_413387065339458561 (
     .reset(not_reset),
     .led_o(uo_out[0]),
     .data({
-      pixel_0[15:8], pixel_0[7:0], pixel_0[23:16],
-      pixel_1[15:8], pixel_1[7:0], pixel_1[23:16],
-      pixel_2[15:8], pixel_2[7:0], pixel_2[23:16],
-      pixel_3[15:8], pixel_3[7:0], pixel_3[23:16],
-      pixel_4[15:8], pixel_4[7:0], pixel_4[23:16],
-      pixel_5[15:8], pixel_5[7:0], pixel_5[23:16],
-      pixel_6[15:8], pixel_6[7:0], pixel_6[23:16]
+      5'b0, pixel_0[5:3], 5'b0, pixel_0[2:0], 5'b0, pixel_0[8:6],
+      5'b0, pixel_1[5:3], 5'b0, pixel_1[2:0], 5'b0, pixel_1[8:6],
+      5'b0, pixel_2[5:3], 5'b0, pixel_2[2:0], 5'b0, pixel_2[8:6],
+      5'b0, pixel_3[5:3], 5'b0, pixel_3[2:0], 5'b0, pixel_3[8:6],
+      5'b0, pixel_4[5:3], 5'b0, pixel_4[2:0], 5'b0, pixel_4[8:6],
+      5'b0, pixel_5[5:3], 5'b0, pixel_5[2:0], 5'b0, pixel_5[8:6],
+      5'b0, pixel_6[5:3], 5'b0, pixel_6[2:0], 5'b0, pixel_6[8:6]
       })
   );
 

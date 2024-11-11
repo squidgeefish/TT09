@@ -7,7 +7,7 @@ module apa102_in (
   input wire rst_n,
   input wire sck,
   input wire sda,
-  output reg [167:0] data_out
+  output reg [62:0] data_out
 );
 
   localparam START = 2'b00;
@@ -16,7 +16,7 @@ module apa102_in (
   
   reg [1:0] state;
   
-  reg [7:0] index;
+  reg [5:0] index;
   
   reg [8:0] bit_count;
 
@@ -28,7 +28,7 @@ module apa102_in (
       data_out <= 0;
       bit_count <= 0;
       last_sck <= 1;
-      index <= 167;
+      index <= 62;
     end else begin
       last_sck <= sck;
 
@@ -48,8 +48,10 @@ module apa102_in (
       
           DATA: begin
             if ( ((bit_count - 32)  % 32) >= 8 ) begin
-              data_out[index] <= sda;
-              index <= index - 1;
+              if ((bit_count % 8) < 3) begin
+                data_out[index] <= sda;
+                index <= index - 1;
+              end
             end
             bit_count <= bit_count + 1;
             if (bit_count == 256) begin // 32*(start + 7 LEDs)
@@ -60,7 +62,7 @@ module apa102_in (
           STOP: begin
             if (bit_count == 288) begin // 32*(start + 7 LEDs + stop)
               state <= START;
-              index <= 167;
+              index <= 62;
               bit_count <= 0;
             end else begin
               bit_count <= bit_count + 1;
@@ -71,7 +73,7 @@ module apa102_in (
             state <= START;
             data_out <= 0;
             bit_count <= 0;
-            index <= 167;
+            index <= 62;
           end
         endcase
       end
