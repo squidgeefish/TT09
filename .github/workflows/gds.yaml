@@ -16,7 +16,7 @@ jobs:
       - name: Build GDS
         uses: TinyTapeout/tt-gds-action@ttgf26a
         with:
-          flow: openlane2
+          pdk: gf180mcuD
 
   precheck:
     needs: gds
